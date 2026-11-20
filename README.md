@@ -1,4 +1,4 @@
-# Civic Pulse
+# Civic Pulse — Emergency Alert System
 
 Civic Pulse is a Flask and SQLite emergency-alert prototype. It includes a citizen registration form, GPS-assisted alert creation, an alert dashboard, and a device-side queue for alerts created while the server is unreachable.
 
