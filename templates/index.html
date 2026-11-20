@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Civic Pulse — Emergency Assistance</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar"><div><span class="eyebrow">CIVIC PULSE</span><h1>Help is one tap away.</h1><p>Offline-first emergency reporting for citizens and response teams.</p></div><span id="networkBadge" class="badge">Checking connection…</span></header>
+  <main class="layout">
+    <section class="card citizen-card">
+      <div class="section-heading"><div><span class="eyebrow">CITIZEN CONSOLE</span><h2>Request immediate help</h2></div><span class="shield">✦</span></div>
+      <form id="registrationForm" class="form-grid">
+        <label>Full name<input id="name" required placeholder="e.g. Asha Perera"></label>
+        <label>Phone number<input id="phone" required type="tel" placeholder="+94 77 123 4567"></label>
+        <label>Emergency contact<input id="contactName" placeholder="Contact name"></label>
+        <label>Contact phone<input id="contactPhone" type="tel" placeholder="Contact phone"></label>
+        <button class="secondary" type="submit">Save my details</button>
+      </form>
+      <div class="divider"></div>
+      <label class="category-label">Emergency type<select id="category">{% for category in categories %}<option>{{ category }}</option>{% endfor %}</select></label>
+      <button id="alertButton" class="emergency-button" type="button"><span class="pulse-dot"></span><span><strong>PRESS FOR EMERGENCY</strong><small>GPS location will be included</small></span></button>
+      <p id="citizenMessage" class="message" role="status"></p>
+      <div class="status-row"><span>Your device can save alerts without internet.</span><button id="retryButton" class="text-button" type="button">Retry pending alerts</button></div>
+    </section>
+    <section class="card dashboard-card">
+      <div class="section-heading"><div><span class="eyebrow">RESPONSE DASHBOARD</span><h2>Incoming alerts</h2></div><button id="refreshButton" class="icon-button" type="button" aria-label="Refresh">↻</button></div>
+      <div id="summary" class="summary"></div><div id="alerts" class="alerts"><p class="muted">No alerts yet.</p></div>
+    </section>
+  </main>
+  <footer>One Click. One Alert. Immediate Help. <span>•</span> GPS works without mobile data; SMS delivery depends on cellular service and provider configuration.</footer>
+  <script>window.CATEGORIES = {{ categories|tojson }}; window.STATUSES = {{ statuses|tojson }};</script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
